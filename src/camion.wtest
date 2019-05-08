@@ -1,0 +1,53 @@
+import camion.*
+import cosas.*
+describe ""{
+	fixture {
+		camion.cargar(knightRider)
+		camion.cargar(bumblebee)
+	}
+	test "pesoTotal()" {
+	
+	assert.equals(camion.pesoTotal(), 2300)
+
+	}
+	test "excedidoDePeso()" {
+	assert.notThat(camion.excedidoDePeso())
+	camion.cargar(bumblebee)
+	assert.that(camion.excedidoDePeso())
+	
+
+	}
+	test "objetosPeligrosos(nivel)/bumblebee es un auto/" {
+	
+	assert.equals(camion.objetosPeligrosos(9), [knightRider, bumblebee] )
+	assert.equals(camion.objetosPeligrosos(11), [bumblebee] )
+	assert.equals(camion.objetosPeligrosos(20), [] )
+	}
+	test "objetosMasPeligrososQue(cosa)" {
+	assert.equals(camion.objetosMasPeligrososQue(knightRider), [bumblebee])
+
+	}
+	test "puedeCircularEnRuta(nivelMaximoPeligrosidad)" {
+	assert.that(camion.puedeCircularEnRuta(20))
+	assert.notThat(camion.puedeCircularEnRuta(14))
+
+	}
+	test "tieneAlgoQuePesaEntre(min, max)" {
+	assert.that(camion.tieneAlgoQuePesaEntre(500, 700))
+	assert.notThat(camion.tieneAlgoQuePesaEntre(100, 300))
+
+	}
+	test "cosaMasPesada()" {
+	assert.equals(camion.cosaMasPesada(), bumblebee)
+
+	}
+	test "totalBultos()" {
+	assert.equals(camion.totalBultos(), 3)
+
+	}
+	test "pesos()" {
+	assert.equals(camion.pesos(), [500, 800])
+
+	}
+}
+

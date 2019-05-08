@@ -1,0 +1,32 @@
+import cosas.*
+
+test "paqueteDeLadrillos" {
+	paqueteDeLadrillos.cantLadrillos(60)
+	assert.equals(paqueteDeLadrillos.peso(), 120 )
+	assert.equals(paqueteDeLadrillos.bulto(), 1 )
+
+}
+test "arenaAGranel" {
+	arenaAGranel.peso(120)
+	assert.equals(arenaAGranel.peso(), 120 )
+	
+}
+test "contenedorPortuario" {
+	contenedorPortuario.cargar(knightRider)
+	contenedorPortuario.cargar(bumblebee)
+	assert.equals(contenedorPortuario.peso(), 1400 )
+	assert.equals(contenedorPortuario.nivelPeligrosidad(), 800 )
+	assert.equals(contenedorPortuario.bulto(), 4 )
+
+}
+test "residuosRadioactivos" {
+	residuosRadioactivos.peso(120)
+	assert.equals(residuosRadioactivos.peso(), 120 )
+
+}
+test "embalajeDeSeguridad" {
+	embalajeDeSeguridad.contiene(knightRider)
+	assert.equals(embalajeDeSeguridad.peso(), 500 )
+	assert.equals(embalajeDeSeguridad.nivelPeligrosidad(), 5 )
+
+}
