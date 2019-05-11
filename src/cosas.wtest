@@ -1,30 +1,54 @@
 import cosas.*
 
-test "paqueteDeLadrillos" {
+test "paqueteDeLadrillos; peso, bulto y reaccion al cargar con 60 ladrillos" {
 	paqueteDeLadrillos.cantLadrillos(60)
 	assert.equals(paqueteDeLadrillos.peso(), 120 )
 	assert.equals(paqueteDeLadrillos.bulto(), 1 )
+	paqueteDeLadrillos.cambiar()
+	assert.equals( paqueteDeLadrillos.cantLadrillos(), 72 )
 
 }
-test "arenaAGranel" {
+test "arenaAGranel; peso y reaccion al cargar con 120kg" {
 	arenaAGranel.peso(120)
 	assert.equals(arenaAGranel.peso(), 120 )
+	arenaAGranel.cambiar()
+	assert.equals( arenaAGranel.peso(), 140 )
 	
 }
-test "contenedorPortuario" {
+test "bateriaAntiaerea; peso, cant bulto, nivel de peligrosidad y
+	  reaccion al cargar con y sin misiles" {
+	bateriaAntiaerea.tieneMisiles(true)
+	assert.equals(bateriaAntiaerea.peso(), 300 )
+	assert.equals(bateriaAntiaerea.nivelPeligrosidad(), 100 )
+	assert.equals(bateriaAntiaerea.bulto(), 2 )
+	bateriaAntiaerea.tieneMisiles(false)
+	assert.equals(bateriaAntiaerea.peso(),200 )
+	assert.equals(bateriaAntiaerea.nivelPeligrosidad(), 0 )
+	assert.equals(bateriaAntiaerea.bulto(), 1 )
+	bateriaAntiaerea.cambiar()
+	assert.that( bateriaAntiaerea.tieneMisiles() )
+	
+	
+}
+test "contenedorPortuario; peso total, cant bulto, el mayor nivel de peligrosidadde las 
+		cosas que contiene y reaccion de las cosas que contiene al cargar" {
 	contenedorPortuario.cargar(knightRider)
 	contenedorPortuario.cargar(bumblebee)
 	assert.equals(contenedorPortuario.peso(), 1400 )
 	assert.equals(contenedorPortuario.nivelPeligrosidad(), 800 )
 	assert.equals(contenedorPortuario.bulto(), 4 )
+	contenedorPortuario.cambiar()
+	assert.notThat( bumblebee.transformadoEnAuto() )
 
 }
-test "residuosRadioactivos" {
+test "residuosRadioactivos; peso y reaccion al cargar con 120kg" {
 	residuosRadioactivos.peso(120)
 	assert.equals(residuosRadioactivos.peso(), 120 )
+	residuosRadioactivos.cambiar()
+	assert.equals(residuosRadioactivos.peso(), 135 )
 
 }
-test "embalajeDeSeguridad" {
+test "embalajeDeSeguridad; peso y nivel de peligrosidad de lo que envuelve" {
 	embalajeDeSeguridad.contiene(knightRider)
 	assert.equals(embalajeDeSeguridad.peso(), 500 )
 	assert.equals(embalajeDeSeguridad.nivelPeligrosidad(), 5 )

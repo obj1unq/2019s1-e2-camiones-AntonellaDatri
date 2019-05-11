@@ -5,49 +5,50 @@ describe ""{
 		camion.cargar(knightRider)
 		camion.cargar(bumblebee)
 	}
-	test "pesoTotal()" {
+	test " suma del peso del camión vacío (tara) y su carga" {
 	
 	assert.equals(camion.pesoTotal(), 2300)
 
 	}
-	test "excedidoDePeso()" {
+	test "el peso total es superior a 2.5 toneladas" {
 	assert.notThat(camion.excedidoDePeso())
 	camion.cargar(bumblebee)
 	assert.that(camion.excedidoDePeso())
 	
 
 	}
-	test "objetosPeligrosos(nivel)/bumblebee es un auto/" {
+	test "los objetos cargados mas peligrosos que 'nivel'/bumblebee es un auto/" {
 	
 	assert.equals(camion.objetosPeligrosos(9), [knightRider, bumblebee] )
 	assert.equals(camion.objetosPeligrosos(11), [bumblebee] )
-	assert.equals(camion.objetosPeligrosos(20), [] )
+	assert.equals(camion.objetosPeligrosos(30), [] )
 	}
-	test "objetosMasPeligrososQue(cosa)" {
+	test "los objetos cargados mas peligrosos que 'cosa'" {
 	assert.equals(camion.objetosMasPeligrososQue(knightRider), [bumblebee])
 
 	}
-	test "puedeCircularEnRuta(nivelMaximoPeligrosidad)" {
-	assert.that(camion.puedeCircularEnRuta(20))
+	test "alguna de las cosas que el camion transporta no supera el nivelMaximoDePeligrosidad" {
+	assert.that(camion.puedeCircularEnRuta(30))
 	assert.notThat(camion.puedeCircularEnRuta(14))
 
 	}
-	test "tieneAlgoQuePesaEntre(min, max)" {
+	test "el peso de alguna de las cosas que tiene el camión está en el intervalo dado" {
 	assert.that(camion.tieneAlgoQuePesaEntre(500, 700))
 	assert.notThat(camion.tieneAlgoQuePesaEntre(100, 300))
 
 	}
-	test "cosaMasPesada()" {
+	test "la cosa más pesada que tenga el camión" {
 	assert.equals(camion.cosaMasPesada(), bumblebee)
 
 	}
-	test "totalBultos()" {
+	test " suma de bultos que se está transportando" {
 	assert.equals(camion.totalBultos(), 3)
 
 	}
-	test "pesos()" {
+	test "lista con los pesos de cada cosa que tiene el camión" {
 	assert.equals(camion.pesos(), [500, 800])
 
 	}
+	
 }
 

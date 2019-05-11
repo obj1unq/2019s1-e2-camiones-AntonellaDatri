@@ -4,6 +4,7 @@ object camion {
 	const property cosas = []
 	const tara = 1000
 	method cargar(unaCosa) {
+		unaCosa.cambiar()
 		cosas.add(unaCosa)
 	}
 	method descargar(cosa){
@@ -22,7 +23,7 @@ object camion {
 		return cosas.filter({unaCosa => unaCosa.nivelPeligrosidad() > cosa.nivelPeligrosidad()})
 	}
 	method puedeCircularEnRuta(nivelMaximoPeligrosidad){
-		return cosas.all({ unaCosa => unaCosa.nivelPeligrosidad() < nivelMaximoPeligrosidad})
+		return cosas.all({ unaCosa => unaCosa.nivelPeligrosidad() <= nivelMaximoPeligrosidad})
 	}
 	method tieneAlgoQuePesaEntre(min, max){
 		return cosas.any({unaCosa => unaCosa.peso() <= max && unaCosa.peso() >= min })
@@ -36,6 +37,7 @@ object camion {
 	method pesos(){
 		return cosas.map({unaCosa => unaCosa.peso()})
 	}
+
 
 }
 
